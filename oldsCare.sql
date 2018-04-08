@@ -1,4 +1,3 @@
--- Create syntax for '(null)'
 
 -- Create syntax for TABLE 'environment_record'
 CREATE TABLE `environment_record` (
