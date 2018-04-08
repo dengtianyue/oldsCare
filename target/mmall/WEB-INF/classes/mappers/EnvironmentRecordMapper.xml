@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.oldsCare.dao.EnvironmentRecordMapper" >
+  <resultMap id="BaseResultMap" type="com.oldsCare.pojo.EnvironmentRecord" >
+    <constructor >
+      <idArg column="id" jdbcType="BIGINT" javaType="java.lang.Long" />
+      <arg column="user_id" jdbcType="BIGINT" javaType="java.lang.Long" />
+      <arg column="gas" jdbcType="DOUBLE" javaType="java.lang.Double" />
+      <arg column="temperature" jdbcType="DOUBLE" javaType="java.lang.Double" />
+      <arg column="humidity" jdbcType="DOUBLE" javaType="java.lang.Double" />
+      <arg column="creator" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="editor" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="create_time" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+      <arg column="edit_time" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+      <arg column="is_deleted" jdbcType="TINYINT" javaType="java.lang.Byte" />
+    </constructor>
+  </resultMap>
+
+  <resultMap id="EnvRecordVO" type="com.oldsCare.vo.EnvironmentRecordVO" >
+      <result column="user_id" jdbcType="BIGINT" property="userId" javaType="java.lang.Long" />
+      <result column="gas" jdbcType="DOUBLE" property="gas" javaType="java.lang.Double" />
+      <result column="temperature" jdbcType="DOUBLE" property="temperature" javaType="java.lang.Double" />
+      <result column="humidity" jdbcType="DOUBLE" property="humidity" javaType="java.lang.Double" />
+      <result column="create_time" property="createTime" jdbcType="TIMESTAMP" javaType="java.lang.String" />
+  </resultMap>
+
+  <sql id="Base_Column_List" >
+    id, user_id, gas, temperature, humidity, creator, editor, create_time, edit_time, 
+    is_deleted
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from environment_record
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from environment_record
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.oldsCare.pojo.EnvironmentRecord" >
+    insert into environment_record (id, user_id, gas, 
+      temperature, humidity, creator, 
+      editor, create_time, edit_time, 
+      is_deleted)
+    values (#{id,jdbcType=BIGINT}, #{userId,jdbcType=BIGINT}, #{gas,jdbcType=DOUBLE}, 
+      #{temperature,jdbcType=DOUBLE}, #{humidity,jdbcType=DOUBLE}, #{creator,jdbcType=VARCHAR}, 
+      #{editor,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{editTime,jdbcType=TIMESTAMP}, 
+      #{isDeleted,jdbcType=TINYINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.oldsCare.pojo.EnvironmentRecord" >
+    insert into environment_record
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="gas != null" >
+        gas,
+      </if>
+      <if test="temperature != null" >
+        temperature,
+      </if>
+      <if test="humidity != null" >
+        humidity,
+      </if>
+      <if test="creator != null" >
+        creator,
+      </if>
+      <if test="editor != null" >
+        editor,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="editTime != null" >
+        edit_time,
+      </if>
+      <if test="isDeleted != null" >
+        is_deleted,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="gas != null" >
+        #{gas,jdbcType=DOUBLE},
+      </if>
+      <if test="temperature != null" >
+        #{temperature,jdbcType=DOUBLE},
+      </if>
+      <if test="humidity != null" >
+        #{humidity,jdbcType=DOUBLE},
+      </if>
+      <if test="creator != null" >
+        #{creator,jdbcType=VARCHAR},
+      </if>
+      <if test="editor != null" >
+        #{editor,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="editTime != null" >
+        #{editTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isDeleted != null" >
+        #{isDeleted,jdbcType=TINYINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.oldsCare.pojo.EnvironmentRecord" >
+    update environment_record
+    <set >
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="gas != null" >
+        gas = #{gas,jdbcType=DOUBLE},
+      </if>
+      <if test="temperature != null" >
+        temperature = #{temperature,jdbcType=DOUBLE},
+      </if>
+      <if test="humidity != null" >
+        humidity = #{humidity,jdbcType=DOUBLE},
+      </if>
+      <if test="creator != null" >
+        creator = #{creator,jdbcType=VARCHAR},
+      </if>
+      <if test="editor != null" >
+        editor = #{editor,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="editTime != null" >
+        edit_time = #{editTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isDeleted != null" >
+        is_deleted = #{isDeleted,jdbcType=TINYINT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.oldsCare.pojo.EnvironmentRecord" >
+    update environment_record
+    set user_id = #{userId,jdbcType=BIGINT},
+      gas = #{gas,jdbcType=DOUBLE},
+      temperature = #{temperature,jdbcType=DOUBLE},
+      humidity = #{humidity,jdbcType=DOUBLE},
+      creator = #{creator,jdbcType=VARCHAR},
+      editor = #{editor,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      edit_time = #{editTime,jdbcType=TIMESTAMP},
+      is_deleted = #{isDeleted,jdbcType=TINYINT}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+
+  <select id="select7Day" resultMap="EnvRecordVO" parameterType="java.lang.Long" >
+    select
+    user_id,round(avg(gas),1) gas,round(avg(temperature),1) temperature, round(avg(humidity),1) humidity,date_format(create_time,'%Y-%m-%d') create_time
+    from environment_record
+    where user_id = #{userId,jdbcType=BIGINT}
+    and
+    create_time >= DATE_SUB(NOW(),INTERVAL 7 DAY)
+    group by date_format(create_time,'%Y-%m-%d')
+    order by date_format(create_time,'%Y-%m-%d')
+    desc
+  </select>
+
+  <select id="selectNow" resultMap="EnvRecordVO" parameterType="java.lang.Long" >
+    select
+    create_time,gas,temperature,humidity
+    from environment_record
+    where user_id = #{userId,jdbcType=BIGINT}
+    and create_time &lt;= now()
+    order by create_time desc
+    limit 1
+  </select>
+</mapper>
