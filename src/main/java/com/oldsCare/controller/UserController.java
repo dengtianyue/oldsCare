@@ -32,7 +32,7 @@ public class UserController {
      * @param session
      * @return
      */
-    @RequestMapping(value = "login.do",method = RequestMethod.POST)
+    @RequestMapping(value = "login.do")
     @ResponseBody
     public ServerResponse<UserVO> login(String username, String password, HttpSession session){
         //service-->mybatis-->dao
@@ -52,7 +52,7 @@ public class UserController {
         return ServerResponse.createBySuccess();
     }
 
-    @RequestMapping(value = "register.do",method = RequestMethod.POST)
+    @RequestMapping(value = "register.do")
     @ResponseBody
     public ServerResponse<String> register(User user){
         return iUserService.register(user);
